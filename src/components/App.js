@@ -6,13 +6,17 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+      try {
+        const res = await fetch("https://jsonplaceholder.typicode.com/posts");
       if (!res.ok) {
         throw new Error("Data Not Fetched");
       }
       const dataFetched = await res.json();
       console.log(dataFetched);
       setData(dataFetched);
+      } catch (error) {
+        console.log(error.message)
+      }
     };
     fetchData()
   }, []);
